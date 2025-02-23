@@ -3,56 +3,7 @@
 import * as React from "react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import User1 from "@/assets/user1.jpg";
-import User2 from "@/assets/user2.jpg";
-import User3 from "@/assets/user3.jpg";
-import User4 from "@/assets/user4.jpg";
-import User5 from "@/assets/user5.jpg";
-interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  mood: number;
-  image: string;
-}
-
-const initialTeamMembers: TeamMember[] = [
-  {
-    id: "1",
-    name: "Andrea",
-    role: "UX Junior",
-    mood: 50,
-    image: User1,
-  },
-  {
-    id: "2",
-    name: "Alvaro",
-    role: "Back-end developer",
-    mood: 80,
-    image: User2,
-  },
-  {
-    id: "3",
-    name: "Juan",
-    role: "UX Senior",
-    mood: 70,
-    image: User3,
-  },
-  {
-    id: "4",
-    name: "Jose",
-    role: "Marketing",
-    mood: 30,
-    image: User4,
-  },
-  {
-    id: "5",
-    name: "Maria",
-    role: "UX Junior",
-    mood: 60,
-    image: User5,
-  },
-];
+import { initialTeamMembers } from "@/constants";
 
 export function TeamMood() {
   const [teamMembers, setTeamMembers] = React.useState(initialTeamMembers);
@@ -100,24 +51,33 @@ export function TeamMood() {
   }, [handleDragEnd]);
 
   return (
-    <Card>
-      <div className="w-full max-w-md space-y-6 p-6">
-        <h2 className="text-xl font-semibold text-gray-900">Team mood</h2>
+    <Card className="m-0 p-0 h-[96%]">
+      <div className="w-full max-w-md p-6">
+        <h2 className="text-xl font-semibold text-gray-900 mb-3">Team mood</h2>
         <div className="space-y-6">
           {teamMembers.map((member) => (
             <div key={member.id} className="flex items-center gap-4">
-              <Avatar className="h-12 w-12">
-                <AvatarImage src={member.image} alt={member.name} />
-                <AvatarFallback>{member.name[0]}</AvatarFallback>
-              </Avatar>
-              <div className="flex-1">
-                <div className="flex items-baseline justify-between">
-                  <h3 className="font-medium text-gray-900">{member.name}</h3>
+              <div className="w-full">
+                <div className="flex gap-5 mb-3">
+                  <Avatar className="h-12 w-12">
+                    <AvatarImage src={member.image} alt={member.name} />
+                    <AvatarFallback>{member.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <div className="flex items-baseline justify-between">
+                      <h3 className="font-medium text-gray-900">{member.name}</h3>
+                    </div>
+                    <p className="text-sm text-gray-500">{member.role}</p>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-500">{member.role}</p>
+
                 <div
                   className="relative mt-2 cursor-pointer touch-none"
-                  ref={(el) => el && sliderRefs.current.set(member.id, el)}
+                  ref={(el) => {
+                    if (el) {
+                      sliderRefs.current.set(member.id, el);
+                    }
+                  }}
                   onMouseDown={() => handleDragStart(member.id)}
                   onTouchStart={() => handleDragStart(member.id)}
                   onMouseMove={(e) => handleDrag(e, member.id)}
@@ -126,7 +86,7 @@ export function TeamMood() {
                   <div className="h-[2px] w-full bg-gray-200" />
                   <div
                     className={cn(
-                      "absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-grab transition-all",
+                      "absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transform cursor-grab transition-all text-xl",
                       draggingId === member.id && "cursor-grabbing scale-110"
                     )}
                     style={{
@@ -146,7 +106,8 @@ export function TeamMood() {
 }
 
 function getMoodEmoji(mood: number) {
-  if (mood < 33) return "😠";
+  if (mood < 33) return "😡";
+  if (mood < 43) return "😠";
   if (mood < 66) return "🙂";
   return "😄";
 }

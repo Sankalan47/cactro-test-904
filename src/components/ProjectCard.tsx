@@ -10,6 +10,7 @@ interface ProjectCardProps {
   actualHours: number;
   soldHours: number;
   status: "over-budget" | "on-track" | "under-budget";
+  avatar: string;
 }
 
 export function ProjectCard({
@@ -20,6 +21,7 @@ export function ProjectCard({
   actualHours,
   soldHours,
   status,
+  avatar,
 }: ProjectCardProps) {
   const getStatusColor = () => {
     switch (status) {
@@ -50,9 +52,9 @@ export function ProjectCard({
           <h3 className="font-semibold">{name}</h3>
           <p className="text-sm text-muted-foreground">{company}</p>
         </div>
-        <Avatar className="h-8 w-8">
-          <AvatarImage src="/placeholder-avatar.jpg" />
-          <AvatarFallback>U</AvatarFallback>
+        <Avatar className="h-12 w-12">
+          <AvatarImage src={avatar} alt={name} />
+          <AvatarFallback>{name[0]}</AvatarFallback>
         </Avatar>
       </div>
 

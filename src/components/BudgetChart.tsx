@@ -44,6 +44,8 @@ export function BudgetChart() {
                 <Label
                   content={({ viewBox }) => {
                     if (!viewBox) return null;
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
                     const { cx, cy } = viewBox;
                     return (
                       <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">

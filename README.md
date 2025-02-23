@@ -1,5 +1,10 @@
 # Hours - Project Management Dashboard 🚀
 
+<div align="center">
+  <img src="public/image.png" alt="Hours Dashboard Preview" width="100%" />
+</div>
+
+<br/>
 A modern, responsive admin dashboard built with React, TypeScript, and Tailwind CSS for project and team management.
 
 ## 🌟 Features

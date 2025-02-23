@@ -1,3 +1,9 @@
+import User1 from "@/assets/user1.jpg";
+import User2 from "@/assets/user2.jpg";
+import User3 from "@/assets/user3.jpg";
+import User4 from "@/assets/user4.jpg";
+import User5 from "@/assets/user5.jpg";
+
 type ProjectStatus = "over-budget" | "on-track" | "under-budget";
 
 interface Project {
@@ -8,6 +14,7 @@ interface Project {
   actualHours: number;
   soldHours: number;
   status: ProjectStatus;
+  avatar: string;
 }
 
 export const projects: Project[] = [
@@ -19,6 +26,7 @@ export const projects: Project[] = [
     actualHours: 1100,
     soldHours: 1000,
     status: "over-budget",
+    avatar: User1,
   },
   {
     name: "Neo",
@@ -28,6 +36,7 @@ export const projects: Project[] = [
     actualHours: 1100,
     soldHours: 1000,
     status: "on-track",
+    avatar: User2,
   },
   {
     name: "VR Website",
@@ -37,6 +46,7 @@ export const projects: Project[] = [
     actualHours: 1100,
     soldHours: 2000,
     status: "under-budget",
+    avatar: User3,
   },
   {
     name: "VR Website",
@@ -46,6 +56,7 @@ export const projects: Project[] = [
     actualHours: 1100,
     soldHours: 1100,
     status: "under-budget",
+    avatar: User4,
   },
 ];
 
@@ -72,4 +83,50 @@ export const revenueData = [
   { date: "23 June", cost: 4200 },
   { date: "24 June", cost: 6500 },
   { date: "25 June", cost: 6500 },
+];
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  mood: number;
+  image: string;
+}
+
+export const initialTeamMembers: TeamMember[] = [
+  {
+    id: "1",
+    name: "Andrea",
+    role: "UX Junior",
+    mood: 50,
+    image: User1,
+  },
+  {
+    id: "2",
+    name: "Alvaro",
+    role: "Back-end developer",
+    mood: 80,
+    image: User2,
+  },
+  {
+    id: "3",
+    name: "Juan",
+    role: "UX Senior",
+    mood: 70,
+    image: User3,
+  },
+  {
+    id: "4",
+    name: "Jose",
+    role: "Marketing",
+    mood: 30,
+    image: User4,
+  },
+  {
+    id: "5",
+    name: "Maria",
+    role: "UX Junior",
+    mood: 60,
+    image: User5,
+  },
 ];
